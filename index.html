@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M2A Consulting & Language Academy</title>
+    <!-- Modern Font matching brand style -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #211c54; 
+            --accent-red: #e42245; 
+            --light-bg: #f9f9fc;
+            --text-main: #333333;
+            --text-light: #ffffff;
+            --font-main: 'Outfit', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-main);
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+        }
+
+        /* ----- NAVIGATION ----- */
+        header {
+            background-color: var(--light-bg);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-container h1 {
+            color: var(--primary-blue);
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        .logo-container h1 span { color: var(--accent-red); }
+
+        .logo-text {
+            border-left: 2px solid var(--accent-red);
+            padding-left: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .logo-text p:first-child {
+            color: var(--primary-blue);
+            font-weight: 800;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .logo-text p:last-child {
+            color: var(--accent-red);
+            font-weight: 600;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s;
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: 0;
+            width: 0%; height: 2px;
+            background-color: var(--accent-red);
+            transition: width 0.3s ease;
+        }
+        nav ul li a:hover { color: var(--accent-red); }
+        nav ul li a:hover::after { width: 100%; }
+
+        .btn-primary {
+            background-color: var(--accent-red);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(228, 34, 69, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(228, 34, 69, 0.4);
+        }
+
+        /* ----- HERO SECTION ----- */
+        .hero {
+            display: flex;
+            min-height: 85vh;
+            background-color: var(--primary-blue);
+            position: relative;
+            overflow: hidden;
+            color: var(--text-light);
+        }
+        .hero-content {
+            flex: 1;
+            padding: 5% 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        .hero-badge {
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            align-self: flex-start;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            animation: slideUp 0.8s ease-out forwards;
+        }
+        
+        .hero-title span {
+            color: var(--accent-red);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            opacity: 0.9;
+            animation: slideUp 1s ease-out forwards;
+        }
+
+        .highlight-box {
+            background-color: var(--accent-red);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            max-width: 550px;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+            animation: slideUp 1.2s ease-out forwards;
+        }
+        .highlight-box:hover { transform: translateY(-10px); }
+        .box-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid white;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+        .box-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+        .box-list li {
+            font-size: 1.05rem;
+            font-weight: 600;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .box-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0; top: 0;
+            color: white;
+            font-weight: 800;
+        }
+
+        /* Hero Image/Right Side */
+        .hero-image {
+            flex: 1;
+            background: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80') center/cover;
+            position: relative;
+            min-height: 500px;
+        }
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(90deg, var(--primary-blue) 0%, rgba(0,0,0,0) 40%);
+        }
+        /* Slanted Divider */
+        .slant-divider {
+            position: absolute;
+            left: -1px; top: 0; bottom: 0; width: 100px;
+            background-color: var(--primary-blue);
+            clip-path: polygon(0 0, 100% 0, 0 100%);
+            z-index: 5;
+        }
+
+        /* ----- SECTION TITLES ----- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            max-width: 800px;
+            margin-inline: auto;
+        }
+        .section-subtitle {
+            color: var(--accent-red);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+        .section-title {
+            color: var(--primary-blue);
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .section-desc {
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* ----- ABOUT / GUARANTEE SECTION ----- */
+        .about-section {
+            padding: 6rem 5%;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .about-text p {
+            font-size: 1.15rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .guarantee-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(228, 34, 69, 0.1);
+            color: var(--accent-red);
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            border-left: 4px solid var(--accent-red);
+        }
+
+        .about-images {
+            flex: 1;
+            position: relative;
+        }
+        
+        .img-main {
+            width: 90%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            display: block;
+            margin-left: auto;
+        }
+        
+        .img-float {
+            position: absolute;
+            left: 0;
+            bottom: -30px;
+            width: 50%;
+            border-radius: 20px;
+            border: 10px solid white;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        /* ----- SERVICES SECTION (WITH IMAGES) ----- */
+        .services {
+            padding: 6rem 5%;
+            background-color: var(--light-bg);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+        
+        .service-img {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .service-content {
+            padding: 2.5rem 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-content h3 {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .service-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+        
+        .service-content .tags {
+            margin-top: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .tag {
+            background: var(--light-bg);
+            color: var(--primary-blue);
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        /* ----- PRICING SECTION ----- */
+        .pricing-section {
+            padding: 6rem 5%;
+            background-color: var(--primary-blue);
+            color: white;
+            text-align: center;
+        }
+        
+        .pricing-section .section-title {
+            color: white;
+        }
+        
+        .pricing-section .section-desc {
+            color: #ccc;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 4rem auto 0;
+            align-items: center;
+        }
+        
+        .price-card {
+            background: white;
+            color: var(--text-main);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        
+        .price-card.popular {
+            transform: scale(1.05);
+            border: 4px solid var(--accent-red);
+            padding: 3.5rem 2rem;
+        }
+        
+        .price-card:hover {
+            transform: translateY(-8px);
+        }
+        .price-card.popular:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .price-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-red);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        
+        .price-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 5px;
+        }
+        
+        .price-amount span {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #666;
+        }
+        
+        .price-old {
+            color: #999;
+            text-decoration: line-through;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .no-discount {
+            color: transparent;
+            text-decoration: none;
+            user-select: none;
+        }
+
+        .price-card .btn-primary {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        /* ----- CTA SECTION ----- */
+        .cta-section {
+            padding: 5rem 5%;
+            text-align: center;
+            background: linear-gradient(135deg, var(--accent-red) 0%, #B81534 100%);
+            color: white;
+        }
+        .cta-section h2 {
+            font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem;
+        }
+        .cta-section p {
+            font-size: 1.2rem; opacity: 0.9; margin-bottom: 2.5rem; max-width: 600px; margin-inline: auto;
+        }
+        .btn-white {
+            background-color: white;
+            color: var(--accent-red);
+            padding: 1rem 2.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800; font-size: 1.1rem;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            display: inline-block;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        .btn-white:hover {
+            transform: scale(1.05); box-shadow: 0 15px 25px rgba(0,0,0,0.25);
+        }
+
+        /* ----- FOOTER ----- */
+        footer {
+            background-color: #0A0923;
+            color: white;
+            padding: 5rem 5% 2rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 3rem;
+        }
+        .footer-col h4 {
+            font-size: 1.3rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--accent-red);
+        }
+        .footer-col p, .footer-col a {
+            color: #ccc; text-decoration: none; line-height: 1.8; display: block; margin-bottom: 0.8rem;
+        }
+        .footer-col a:hover { color: white; }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-item span:first-child {
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+        
+        .footer-bottom {
+            text-align: center; color: #888;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1000px) {
+            .about-section { flex-direction: column; }
+            .img-float { width: 60%; left: 20px; }
+            .price-card.popular { transform: none; padding: 3rem 2rem; }
+            .price-card.popular:hover { transform: translateY(-8px); }
+        }
+
+        @media (max-width: 900px) {
+            .hero { flex-direction: column; min-height: auto; }
+            .hero-content { padding-top: 4rem; padding-bottom: 4rem; }
+            .hero-image { min-height: 400px; width: 100%; }
+            .slant-divider { display: none; }
+            .hero-image::before { background: linear-gradient(180deg, var(--primary-blue) 0%, rgba(0,0,0,0) 40%); }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <a href="#" class="logo-container">
+            <h1>M<span>2</span>A</h1>
+            <div class="logo-text">
+                <p>Consulting</p>
+                <p>Language Academy</p>
+            </div>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#propos">À Propos</a></li>
+                <li><a href="#programmes">Nos Prestations</a></li>
+                <li><a href="#offres">Offres</a></li>
+            </ul>
+        </nav>
+        <a href="#contact" class="btn-primary">S'inscrire</a>
+    </header>
+
+    <!-- Main Hero Section -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">✨ Inscriptions Ouvertes</div>
+            <h2 class="hero-title">Académie des<br>Langues <span>M2A</span></h2>
+            <p class="hero-subtitle">
+                Haute qualité d'enseignement et de formation. Développez vos compétences en communication moderne et démarquez-vous.
+            </p>
+
+            <div class="highlight-box">
+                <h3 class="box-title">📌 Places Limitées, Réservez Vite</h3>
+                <ul class="box-list">
+                    <li>Cours de soutien pour tous les niveaux</li>
+                    <li>Cours exceptionnels d'apprentissage des langues</li>
+                    <li>Location de salles équipées pour les formations</li>
+                </ul>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="slant-divider"></div>
+        </div>
+    </section>
+
+    <!-- About & Guarantee Section -->
+    <section id="propos" class="about-section">
+        <div class="about-text">
+            <p class="section-subtitle">Notre Méthode</p>
+            <h2>100% Pratique et Communicative</h2>
+            <p>
+                Chez <strong>M2A Academy</strong>, nous garantissons des résultats efficaces grâce à un encadrement pédagogique de qualité. Nous mettons à votre disposition des formateurs experts et un environnement performant pour exceller.
+            </p>
+            <p>
+                Rejoignez une académie qui place votre réussite au centre de ses priorités. Que ce soit pour des cours de soutien ou pour apprendre de nouvelles langues, notre équipe est là pour vous guider.
+            </p>
+            <div class="guarantee-badge">
+                ✅ Résultats Garantie à 100% !
+            </div>
+        </div>
+        <div class="about-images">
+            <!-- Using high quality Unsplash photos for learning/teaching -->
+            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80" alt="Students in class" class="img-main">
+            <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80" alt="Teaching" class="img-float">
+        </div>
+    </section>
+
+    <!-- Services / Programmes -->
+    <section id="programmes" class="services">
+        <div class="section-header">
+            <p class="section-subtitle">Ce que nous vous proposons</p>
+            <h2 class="section-title">Nos Prestations d'Excellence</h2>
+            <p class="section-desc">Des formations adaptées à tous les âges et à tous les niveaux professionnels et académiques.</p>
+        </div>
+        
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80" alt="Cours de soutien" class="service-img">
+                <div class="service-content">
+                    <h3>Cours de Soutien</h3>
+                    <p>Accompagnement de qualité pour tous les niveaux scolaires. Un encadrement pédagogique sérieux pour garantir votre réussite académique.</p>
+                    <div class="tags">
+                        <span class="tag">Tous Niveaux</span>
+                        <span class="tag">Soutien Scolaire</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80" alt="Apprentissage des langues" class="service-img">
+                <div class="service-content">
+                    <h3>Apprentissage des Langues</h3>
+                    <p>Des cours intensifs et interactifs pour maîtriser rapidement l'oral et l'écrit avec des professeurs qualifiés.</p>
+                    <div class="tags">
+                        <span class="tag">Kids (Dès 5 ans)</span>
+                        <span class="tag">Juniors</span>
+                        <span class="tag">Adultes</span>
+                        <span class="tag">Débutant à Avancé</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80" alt="Location de salles" class="service-img">
+                <div class="service-content">
+                    <h3>Location de Salles</h3>
+                    <p>Des salles modernes, parfaitement équipées et climatisées, idéales pour l'organisation de vos formations et séminaires professionnels.</p>
+                    <div class="tags">
+                        <span class="tag">Équipées</span>
+                        <span class="tag">Bureaux Moustakbali</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing / Offres -->
+    <section id="offres" class="pricing-section">
+        <div class="section-header">
+            <p class="section-subtitle">Promotions d'Hiver</p>
+            <h2 class="section-title">Nos Offres Exceptionnelles</h2>
+            <p class="section-desc">Ne ratez pas cette opportunité pour booster vos compétences linguistiques à prix réduit !</p>
+        </div>
+        
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h4 class="price-title">1 Session</h4>
+                <div class="price-amount">800 <span>DH</span></div>
+                <p class="price-old no-discount">Seulement</p>
+                <div style="margin: 1.5rem 0; text-align: left; opacity: 0.8;">
+                    <p>✓ Accès complet à la session</p>
+                    <p>✓ Matériel pédagogique inclus</p>
+                    <p>✓ Suivi personnalisé</p>
+                </div>
+                <a href="#contact" class="btn-primary" style="background-color: var(--primary-blue);">Réserver</a>
+            </div>
+            
+            <div class="price-card popular">
+                <div class="price-badge">Économisez 100 DH</div>
+                <h4 class="price-title">2 Sessions</h4>
+                <div class="price-amount">1500 <span>DH</span></div>
+                <p class="price-old">Au lieu de 1600 DH</p>
+                <div style="margin: 1.5rem 0; text-align: left; opacity: 0.8;">
+                    <p>✓ Accès à deux sessions complètes</p>
+                    <p>✓ Évaluation continue</p>
+                    <p>✓ Certificat de participation</p>
+                </div>
+                <a href="#contact" class="btn-primary">Réserver Vite</a>
+            </div>
+            
+            <div class="price-card">
+                <div class="price-badge">Promo Annuelle</div>
+                <h4 class="price-title">Année Complète</h4>
+                <div class="price-amount">2100 <span>DH</span></div>
+                <p class="price-old">Au lieu de 2400 DH</p>
+                <div style="margin: 1.5rem 0; text-align: left; opacity: 0.8;">
+                    <p>✓ Accès sans limite toute l'année</p>
+                    <p>✓ Priorité aux événements M2A</p>
+                    <p>✓ Bilan mensuel</p>
+                </div>
+                <a href="#contact" class="btn-primary" style="background-color: var(--primary-blue);">Réserver</a>
+            </div>
+            
+            <div class="price-card">
+                 <div class="price-badge" style="background: #27ae60;">Top Deal</div>
+                <h4 class="price-title">2 Langues / 2 Sessions</h4>
+                <div class="price-amount">2900 <span>DH</span></div>
+                <p class="price-old">Au lieu de 3200 DH</p>
+                <div style="margin: 1.5rem 0; text-align: left; opacity: 0.8;">
+                    <p>✓ L'offre la plus complète</p>
+                    <p>✓ Double apprentissage</p>
+                    <p>✓ Flexibilité des horaires</p>
+                </div>
+                <a href="#contact" class="btn-primary" style="background-color: var(--primary-blue);">Réserver</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section" id="contact">
+        <h2>Prêt à développer vos compétences ?</h2>
+        <p>Rejoignez <strong>M2A Academy</strong> dès aujourd'hui. Profitez de nos offres exceptionnelles et garantissez l'excellence.</p>
+        <a href="mailto:contact@m2a-consulting.ma" class="btn-white">Contactez-nous aujourd'hui</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col" style="max-width: 300px;">
+                <div class="logo-container" style="margin-bottom: 1.5rem;">
+                    <h1 style="color:white;">M<span style="color:var(--accent-red);">2</span>A</h1>
+                </div>
+                <p style="opacity: 0.8; font-size: 0.95rem;">M2A Consulting & Language Academy est votre partenaire dédié pour développer vos compétences en communication avec des résultats garantis.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Liens Rapides</h4>
+                <a href="#accueil">Accueil</a>
+                <a href="#propos">À Propos & Méthode</a>
+                <a href="#programmes">Nos Prestations</a>
+                <a href="#offres">Offres Exceptionnelles</a>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Contact & Adresse</h4>
+                <div class="contact-item">
+                    <span>📍</span>
+                    <p>Plateaux Bureaux Moustakbali,<br>1er étage, Bureau N°2,<br>Ben Guerir</p>
+                </div>
+                <div class="contact-item">
+                    <span>📞</span>
+                    <p>+212 808 588 719<br>+212 696 516 689</p>
+                </div>
+                <div class="contact-item">
+                    <span>🌐</span>
+                    <p><a href="http://m2a-consulting.ma" style="display:inline; color:var(--accent-red); font-weight:bold; margin:0; padding:0;">m2a-consulting.ma</a></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 M2A Consulting & Language Academy. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
