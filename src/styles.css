@@ -209,7 +209,7 @@ nav ul li a:hover::after { width: 100%; }
 /* Hero Image/Right Side */
 .hero-image {
     flex: 1;
-    background: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80') center/cover;
+    background: url('/photo-1577896851231-70ef18881754.avif') center/cover;
     position: relative;
     min-height: 500px;
 }
